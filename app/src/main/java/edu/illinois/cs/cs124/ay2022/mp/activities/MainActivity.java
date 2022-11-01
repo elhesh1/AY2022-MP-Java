@@ -76,7 +76,7 @@ public final class MainActivity extends AppCompatActivity
     // Find the MapView component in the layout and configure it properly
     // Also save the reference for later use
     mapView = findViewById(R.id.map);
-
+    // comment test TEST TEST TEST TEST TEST TEST
     // A OpenStreetMaps tile source provides the tiles that are used to render the map.
     // We use our own tile source with relatively-recent tiles for the Champaign-Urbana area, to
     // avoid adding load to existing OSM tile servers.
