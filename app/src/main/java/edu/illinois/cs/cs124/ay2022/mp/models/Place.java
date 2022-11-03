@@ -1,5 +1,6 @@
 package edu.illinois.cs.cs124.ay2022.mp.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -32,9 +33,37 @@ public final class Place {
   private String id;
 
   public static List<Place> search(final List<Place> places, final String search) {
-    assert false;
-    return null;
+    if (places == null || search == null) {
+      throw new IllegalArgumentException();
+    }
+    String myString = search.strip();
+    if (places.isEmpty() || myString.isEmpty()) {
+      return places;
+    }
+
+    myString = myString.trim();
+    List<Place> answer = new ArrayList<>();
+    for (int i = 0; i < places.size(); i++) {
+      String currentString = places.get(i).getDescription();
+      currentString = currentString.toUpperCase();
+      currentString = currentString.replace('.', ' ');
+      currentString = currentString.replace('!', ' ');
+      currentString = currentString.replace('?', ' ');
+      currentString = currentString.replace(',', ' ');
+      currentString = currentString.replace(';', ' ');
+      currentString = currentString.replace(':', ' ');
+      currentString = currentString.replace('/', ' ');
+      currentString = currentString.replaceAll("[^A-Za-z0-9]", "");
+
+      if (currentString.contains(myString)) {
+        answer.add(places.get(i));
+      }
+
+    }
+    return answer;
   }
+
+
 
   public String getId() {
     return id;
