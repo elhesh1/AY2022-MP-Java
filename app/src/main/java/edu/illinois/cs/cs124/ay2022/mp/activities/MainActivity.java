@@ -225,9 +225,15 @@ public final class MainActivity extends AppCompatActivity
 
   @Override
   public boolean onQueryTextChange(final String newText) {
-    search(allPlaces, newText);
+    if (search(allPlaces, newText).isEmpty() == false) {
+      updateShownPlaces(search(allPlaces, newText));
+    }
+
     // if list not empty update shown places function
     // shownplaces(answer)
     return true;
   }
 }
+ // List<Place> found =
+ //     Place.search
+  //        (allPlaces, newText);
