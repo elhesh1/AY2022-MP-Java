@@ -1,6 +1,5 @@
 package edu.illinois.cs.cs124.ay2022.mp.models;
 
-import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public final class Place {
     myString = myString.trim();
     List<Place> answer = new ArrayList<>();
     myString = myString.toUpperCase();
-   // answer.add()
+    // answer.add()
 
     for (int i = 0; i < places.size(); i++) {
       String currentString = places.get(i).getDescription();
@@ -73,16 +72,12 @@ public final class Place {
       // make new array with each word
       // enhanced for loop (place in places)
       // make a new string array
-          // if mystring.equals enhanced for loop then answer.add
+      // if mystring.equals enhanced for loop then answer.add
       // break
-
-
 
     }
     return answer;
   }
-
-
 
   public String getId() {
     return id;

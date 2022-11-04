@@ -1,6 +1,7 @@
 package edu.illinois.cs.cs124.ay2022.mp.activities;
 
 import static edu.illinois.cs.cs124.ay2022.mp.models.Place.search;
+
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -224,8 +225,8 @@ public final class MainActivity extends AppCompatActivity
 
   @Override
   public boolean onQueryTextChange(final String newText) {
-    search(allPlaces,newText);
-   // if list not empty update shown places function
+    search(allPlaces, newText);
+    // if list not empty update shown places function
     // shownplaces(answer)
     return true;
   }
