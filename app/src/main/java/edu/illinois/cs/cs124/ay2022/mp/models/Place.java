@@ -1,5 +1,6 @@
 package edu.illinois.cs.cs124.ay2022.mp.models;
 
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +41,15 @@ public final class Place {
     if (places.isEmpty() || myString.isEmpty()) {
       return places;
     }
-
+    System.out.println("changing string:" + myString);
     myString = myString.trim();
     List<Place> answer = new ArrayList<>();
+    myString = myString.toUpperCase();
+   // answer.add()
+
     for (int i = 0; i < places.size(); i++) {
       String currentString = places.get(i).getDescription();
+      System.out.println(currentString);
       currentString = currentString.toUpperCase();
       currentString = currentString.replace('.', ' ');
       currentString = currentString.replace('!', ' ');
@@ -53,11 +58,25 @@ public final class Place {
       currentString = currentString.replace(';', ' ');
       currentString = currentString.replace(':', ' ');
       currentString = currentString.replace('/', ' ');
-      currentString = currentString.replaceAll("[^A-Za-z0-9]", "");
+      currentString = currentString.replaceAll("[^A-Za-z0-9\\s]", "");
 
-      if (currentString.contains(myString)) {
-        answer.add(places.get(i));
+      System.out.println(currentString);
+
+      String[] wordsInDescription = currentString.split(" ");
+
+      for (String s : wordsInDescription) {
+        if (s.equals(myString)) {
+          answer.add(places.get(i));
+          break;
+        }
       }
+      // make new array with each word
+      // enhanced for loop (place in places)
+      // make a new string array
+          // if mystring.equals enhanced for loop then answer.add
+      // break
+
+
 
     }
     return answer;
