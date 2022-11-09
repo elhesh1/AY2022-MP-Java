@@ -50,7 +50,7 @@ public final class Place {
       String currentString = places.get(i).getDescription();
       System.out.println(currentString);
       currentString = currentString.toUpperCase();
-      currentString = currentString.replace('.', ' ');
+      currentString = currentString.replace('.', ' ' );
       currentString = currentString.replace('!', ' ');
       currentString = currentString.replace('?', ' ');
       currentString = currentString.replace(',', ' ');
