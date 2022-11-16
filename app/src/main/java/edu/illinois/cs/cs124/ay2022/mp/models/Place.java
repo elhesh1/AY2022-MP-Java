@@ -17,7 +17,7 @@ public final class Place {
   public Place() {
     latitude = 1000;
     longitude = 1000;
-
+// comment test
   }
 
   public Place(
