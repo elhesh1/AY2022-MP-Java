@@ -277,6 +277,7 @@ public final class MP2Test {
           "Dog Park",
           HttpURLConnection.HTTP_OK,
           PLACES_COUNT + 1);
+
       testServerFavoritePlacePostHelper(
           gracieUUID,
           "Gracie Challen",
@@ -349,6 +350,8 @@ public final class MP2Test {
             HttpURLConnection.HTTP_OK,
             PLACES_COUNT + usedUUIDs.size());
       }
+
+
     }
   }
 

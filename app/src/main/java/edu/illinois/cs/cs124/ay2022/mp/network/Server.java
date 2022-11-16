@@ -67,6 +67,52 @@ public final class Server extends Dispatcher {
         .setHeader("Content-Type", "application/json; charset=utf-8");
   }
 
+  private MockResponse postFavoritePlace(final RecordedRequest request) {
+
+
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      Place newPlace = mapper.readValue(request.getBody().readUtf8(), Place.class);
+      //newPlace.setLongitude(1000);
+      // newPlace.setLongitude(1000);
+
+      System.out.println("lat;   " + newPlace.getLatitude());
+      System.out.println("long;   " + newPlace.getLongitude());
+      String latt = Double.toString(newPlace.getLatitude());
+      String longg = Double.toString(newPlace.getLongitude());
+      if (newPlace.getId() == null || newPlace.getId().length() == 0
+          || newPlace.getDescription() == null || newPlace.getDescription().length() == 0
+          || newPlace.getName() == null || newPlace.getName().length() == 0
+          || newPlace.getLatitude() == 1000 || newPlace.getLongitude() == 1000
+          || newPlace.getId().length() != 36 || newPlace.getLongitude() <= -180
+          || newPlace.getLongitude() >= 180 || newPlace.getLatitude() <= -90
+          || newPlace.getLatitude() >= 90) {
+        throw new IllegalArgumentException();
+      }
+      else {
+      int c = 0;
+      for (int i = 0; i < places.size(); i++) {
+        if (places.get(i).getId().equals(newPlace.getId())) {
+          places.set(i, newPlace);
+        } else {
+          c++;
+        }
+      }
+      if (c == places.size()) {
+        places.add(newPlace);
+      }
+    }
+      return new MockResponse()
+
+          // Indicate that the request succeeded (HTTP 200 OK)
+          .setResponseCode(HttpURLConnection.HTTP_OK)
+          .setHeader("Content-Type", "application/json; charset=utf-8");
+    } catch (Exception e) {
+      return new MockResponse()
+          .setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST)
+          .setHeader("Content-Type", "application/json; charset=utf-8");
+    }
+  }
   /*
    * Server request dispatcher.
    * Responsible for parsing the HTTP request and determining how to respond.
@@ -102,6 +148,8 @@ public final class Server extends Dispatcher {
       } else if (path.equals("/places") && method.equals("GET")) {
         // Return the JSON list of restaurants for a GET request to the path /restaurants
         return getPlaces();
+      } else if (path.equals("/favoriteplace") && method.equals("POST")) {
+        return postFavoritePlace(request);
       }
 
       // If the route didn't match above, then we return a 404 NOT FOUND

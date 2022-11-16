@@ -14,7 +14,11 @@ public final class Place {
    * The Jackson JSON serialization library that we are using requires an empty constructor.
    * So don't remove this!
    */
-  public Place() {}
+  public Place() {
+    latitude = 1000;
+    longitude = 1000;
+
+  }
 
   public Place(
       final String setId,
@@ -24,10 +28,16 @@ public final class Place {
       final String setDescription) {
     id = setId;
     name = setName;
+
+
     latitude = setLatitude;
-    longitude = setLongitude;
+
+    longitude  = setLongitude;
+
+
     description = setDescription;
   }
+
 
   // ID of the place
   private String id;
@@ -105,6 +115,8 @@ public final class Place {
 
   // Description of the place
   private String description;
+
+
 
   public String getDescription() {
     return description;
