@@ -69,39 +69,43 @@ public final class Server extends Dispatcher {
 
   private MockResponse postFavoritePlace(final RecordedRequest request) {
 
-
     try {
       ObjectMapper mapper = new ObjectMapper();
       Place newPlace = mapper.readValue(request.getBody().readUtf8(), Place.class);
-      //newPlace.setLongitude(1000);
+      // newPlace.setLongitude(1000);
       // newPlace.setLongitude(1000);
 
       System.out.println("lat;   " + newPlace.getLatitude());
       System.out.println("long;   " + newPlace.getLongitude());
       String latt = Double.toString(newPlace.getLatitude());
       String longg = Double.toString(newPlace.getLongitude());
-      if (newPlace.getId() == null || newPlace.getId().length() == 0
-          || newPlace.getDescription() == null || newPlace.getDescription().length() == 0
-          || newPlace.getName() == null || newPlace.getName().length() == 0
-          || newPlace.getLatitude() == 1000 || newPlace.getLongitude() == 1000
-          || newPlace.getId().length() != 36 || newPlace.getLongitude() <= -180
-          || newPlace.getLongitude() >= 180 || newPlace.getLatitude() <= -90
+      if (newPlace.getId() == null
+          || newPlace.getId().length() == 0
+          || newPlace.getDescription() == null
+          || newPlace.getDescription().length() == 0
+          || newPlace.getName() == null
+          || newPlace.getName().length() == 0
+          || newPlace.getLatitude() == 1000
+          || newPlace.getLongitude() == 1000
+          || newPlace.getId().length() != 36
+          || newPlace.getLongitude() <= -180
+          || newPlace.getLongitude() >= 180
+          || newPlace.getLatitude() <= -90
           || newPlace.getLatitude() >= 90) {
         throw new IllegalArgumentException();
-      }
-      else {
-      int c = 0;
-      for (int i = 0; i < places.size(); i++) {
-        if (places.get(i).getId().equals(newPlace.getId())) {
-          places.set(i, newPlace);
-        } else {
-          c++;
+      } else {
+        int c = 0;
+        for (int i = 0; i < places.size(); i++) {
+          if (places.get(i).getId().equals(newPlace.getId())) {
+            places.set(i, newPlace);
+          } else {
+            c++;
+          }
+        }
+        if (c == places.size()) {
+          places.add(newPlace);
         }
       }
-      if (c == places.size()) {
-        places.add(newPlace);
-      }
-    }
       return new MockResponse()
 
           // Indicate that the request succeeded (HTTP 200 OK)

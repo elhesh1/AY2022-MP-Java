@@ -350,8 +350,6 @@ public final class MP2Test {
             HttpURLConnection.HTTP_OK,
             PLACES_COUNT + usedUUIDs.size());
       }
-
-
     }
   }
 

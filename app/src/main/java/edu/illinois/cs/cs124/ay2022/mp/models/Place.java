@@ -17,7 +17,7 @@ public final class Place {
   public Place() {
     latitude = 1000;
     longitude = 1000;
-// comment test
+    // comment test
   }
 
   public Place(
@@ -29,15 +29,12 @@ public final class Place {
     id = setId;
     name = setName;
 
-
     latitude = setLatitude;
 
-    longitude  = setLongitude;
-
+    longitude = setLongitude;
 
     description = setDescription;
   }
-
 
   // ID of the place
   private String id;
@@ -60,7 +57,7 @@ public final class Place {
       String currentString = places.get(i).getDescription();
       System.out.println(currentString);
       currentString = currentString.toUpperCase();
-      currentString = currentString.replace('.', ' ' );
+      currentString = currentString.replace('.', ' ');
       currentString = currentString.replace('!', ' ');
       currentString = currentString.replace('?', ' ');
       currentString = currentString.replace(',', ' ');
@@ -115,8 +112,6 @@ public final class Place {
 
   // Description of the place
   private String description;
-
-
 
   public String getDescription() {
     return description;
