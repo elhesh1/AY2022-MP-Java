@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
@@ -119,8 +120,12 @@ public final class Client {
             }) {
           @Override
           public byte[] getBody() throws AuthFailureError {
-            // seriallize object to string
-            return super.getBody();
+            try {
+              String newPlace = OBJECT_MAPPER.writeValueAsString(place);
+              return newPlace.getBytes(StandardCharsets.UTF_8);
+            } catch (Exception e) {
+              return null;
+            }
           }
 
           @Override
