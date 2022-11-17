@@ -2,6 +2,7 @@ package edu.illinois.cs.cs124.ay2022.mp.network;
 
 import android.os.Build;
 import android.util.Log;
+import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.ExecutorDelivery;
 import com.android.volley.Network;
@@ -28,7 +29,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.NotImplementedException;
 
 /*
  * Client object used by the app to interact with the place API server.
@@ -95,8 +95,42 @@ public final class Client {
   }
 
   public void postFavoritePlace(
-      final Place place, final Consumer<ResultMightThrow<Boolean>> callback) {
-    throw new NotImplementedException();
+      // make sure that it posts instead of get       done I think
+      // post to right url
+      // handle result properly
+      // serialize place then insert json into body
+      final Place place,
+      final Consumer<ResultMightThrow<Boolean>> callback) {
+    StringRequest postFavoritePlaceRequest =
+        new StringRequest(
+            Request.Method.POST,
+            FavoritePlacesApplication.SERVER_URL + "/favoriteplace/",
+            response -> {
+              callback.accept(new ResultMightThrow<>(true));
+              // } catch (JsonProcessingException error) {
+              // Pass the Exception to the callback on error
+              //  callback.accept(new ResultMightThrow<>(error));
+              //   }
+            },
+            error -> {
+              // This code runs on failure
+              // Pass the Exception to the callback on error
+              callback.accept(new ResultMightThrow<>(error));
+            }) {
+          @Override
+          public byte[] getBody() throws AuthFailureError {
+            // seriallize object to string
+            return super.getBody();
+          }
+
+          @Override
+          public String getBodyContentType() {
+            return "application/json; charset=utf-8";
+          }
+        };
+    // Actually queue the request
+    // The callbacks above will be run once it completes
+    requestQueue.add(postFavoritePlaceRequest);
   }
   /*
    * You do not need to modify the code below.
