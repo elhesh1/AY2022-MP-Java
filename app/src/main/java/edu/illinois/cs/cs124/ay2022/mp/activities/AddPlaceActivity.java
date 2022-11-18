@@ -37,7 +37,7 @@ public class AddPlaceActivity extends AppCompatActivity {
     saveButton.setOnClickListener(
         v -> {
           Bundle location = getIntent().getExtras();
-          ;;;
+
           Double mylong = null; // gohafoihaoihagoihafoihasihfoaao
           Double mylat = null;
           if (location != null) {
