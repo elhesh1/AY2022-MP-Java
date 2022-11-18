@@ -31,14 +31,14 @@ public class AddPlaceActivity extends AppCompatActivity {
         v -> {
           startActivity(returnToMain);
         });
-// iiiiiiii
+    // iiiiiiii
     Intent savePlace = new Intent(this, Place.class);
     Button saveButton = findViewById(R.id.save_button);
     saveButton.setOnClickListener(
         v -> {
           Bundle location = getIntent().getExtras();
           ;;;
-          Double mylong = null;
+          Double mylong = null; // gohafoihaoihagoihafoihasihfoaao
           Double mylat = null;
           if (location != null) {
             String thislong = location.getString("longitude");
