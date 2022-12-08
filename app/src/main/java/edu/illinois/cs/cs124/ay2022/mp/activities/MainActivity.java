@@ -5,13 +5,17 @@ import static edu.illinois.cs.cs124.ay2022.mp.models.Place.search;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import edu.illinois.cs.cs124.ay2022.mp.R;
 import edu.illinois.cs.cs124.ay2022.mp.application.FavoritePlacesApplication;
 import edu.illinois.cs.cs124.ay2022.mp.models.Place;
 import edu.illinois.cs.cs124.ay2022.mp.models.ResultMightThrow;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 import org.osmdroid.api.IMapController;
@@ -37,6 +41,8 @@ public final class MainActivity extends AppCompatActivity
     implements Consumer<ResultMightThrow<List<Place>>>,
         SearchView.OnQueryTextListener,
         MapEventsReceiver {
+
+  private Button button;
   // You may find this useful when adding logging
   private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -107,7 +113,57 @@ public final class MainActivity extends AppCompatActivity
     IMapController mapController = mapView.getController();
     mapController.setZoom(MAP_DEFAULT_ZOOM);
     mapController.setCenter(new GeoPoint(40.10986682167534, -88.22831928981661));
+
+    button = (Button) findViewById(R.id.button);
+    button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        System.out.println("BUTTON!!");
+        openActivity4();
+
+      }
+    });
   }
+
+  public void openActivity4() {
+    System.out.println("Button stage 2");
+    SimpleDateFormat sdf2 = new SimpleDateFormat("EEE");
+    String littleDate = sdf2.format(new Date());
+    String testt = littleDate;
+     System.out.println(littleDate + testt) ;
+     String Wed = "Wed";
+
+    if (littleDate == "Mon") {
+      Intent launchAddFavoritePlacee = new Intent(this, Monday.class);
+      startActivity(launchAddFavoritePlacee);
+    } else if (littleDate == "Tue") {
+      Intent launchAddFavoritePlacee = new Intent(this, Tuesday.class);
+      startActivity(launchAddFavoritePlacee);
+    } else if (littleDate == "Sun") {
+      Intent launchAddFavoritePlacee = new Intent(this, Sunday.class);
+      startActivity(launchAddFavoritePlacee);
+    } else if (littleDate == "Thu") {
+      Intent launchAddFavoritePlacee = new Intent(this, Thursday.class);
+      startActivity(launchAddFavoritePlacee);
+    } else
+    if (littleDate == "Fri") {
+      Intent launchAddFavoritePlacee = new Intent(this, Friday.class);
+      startActivity(launchAddFavoritePlacee);
+    } else
+    if (littleDate == "Sat") {
+      Intent launchAddFavoritePlacee = new Intent(this, Saturday.class);
+      startActivity(launchAddFavoritePlacee);
+    } else {
+      Intent launchAddFavoritePlacee = new Intent(this, Wednesday.class);
+      startActivity(launchAddFavoritePlacee);
+    }
+  }
+
+
+ // public void openMainActivity2() {
+  // System.out.println("Button Pressed !");
+
+ // }
 
   /*
    * onResume is called right before the activity begins interacting with the user.
