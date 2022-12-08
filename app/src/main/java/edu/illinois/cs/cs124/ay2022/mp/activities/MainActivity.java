@@ -136,25 +136,25 @@ public final class MainActivity extends AppCompatActivity
     if (littleDate == "Mon") {
       Intent launchAddFavoritePlacee = new Intent(this, Monday.class);
       startActivity(launchAddFavoritePlacee);
-    } else if (littleDate == "Tue") {
+    } else if (littleDate.equals("Tue")) {
       Intent launchAddFavoritePlacee = new Intent(this, Tuesday.class);
       startActivity(launchAddFavoritePlacee);
-    } else if (littleDate == "Sun") {
-      Intent launchAddFavoritePlacee = new Intent(this, Sunday.class);
+    } else if ((littleDate.equals("Wed"))) {
+      Intent launchAddFavoritePlacee = new Intent(this, Wednesday.class);
       startActivity(launchAddFavoritePlacee);
-    } else if (littleDate == "Thu") {
+    } else if (littleDate.equals("Thu")) {
       Intent launchAddFavoritePlacee = new Intent(this, Thursday.class);
       startActivity(launchAddFavoritePlacee);
     } else
-    if (littleDate == "Fri") {
+    if (littleDate.equals("Fri")) {
       Intent launchAddFavoritePlacee = new Intent(this, Friday.class);
       startActivity(launchAddFavoritePlacee);
     } else
-    if (littleDate == "Sat") {
+    if (littleDate.equals("Sat")) {
       Intent launchAddFavoritePlacee = new Intent(this, Saturday.class);
       startActivity(launchAddFavoritePlacee);
     } else {
-      Intent launchAddFavoritePlacee = new Intent(this, Wednesday.class);
+      Intent launchAddFavoritePlacee = new Intent(this, Sunday.class);
       startActivity(launchAddFavoritePlacee);
     }
   }
